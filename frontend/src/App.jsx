@@ -142,7 +142,7 @@ export const App = () => {
             getTotalPets();
             getGentleman();
         }, 5000);
-    }, [])
+    })
 
     return (
         <>
