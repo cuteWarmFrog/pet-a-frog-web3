@@ -9,7 +9,7 @@ const pStyle = {
 export const Gentlemen = (props) => {
     const { list = [] } = props;
 
-    const lastFive = [...list].reverse().slice(0, 4);
+    const lastFive = [...list].reverse().slice(0, 5);
 
     console.log(`list of gentleman: ${list}`)
 

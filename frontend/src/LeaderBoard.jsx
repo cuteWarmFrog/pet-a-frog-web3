@@ -19,7 +19,7 @@ export const LeaderBord = (props) => {
                 map.set(el, Math.max(map.get(el) + 1 | 0, 1));
             });
             console.log(map);
-            sortedItems = [...map.entries()].sort((a, b) => a[1] - b[1])
+            sortedItems = [...map.entries()].sort((a, b) => b[1] - a[1])
         }
         return sortedItems;
     }, [list]);
