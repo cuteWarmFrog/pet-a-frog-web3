@@ -1,60 +1,65 @@
 import React from "react";
 
-import './style.scss';
+import './style.sass';
 
 export const BackgroundStars = () => {
     return (
-        <div class="stars">
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-        </div>
+        <>
+            <div id='stars'></div>
+            <div id='stars2'></div>
+            <div id='stars3'></div>
+        </>
+        // <div class="stars">
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        //     <div class="star"></div>
+        // </div>
     )
 }

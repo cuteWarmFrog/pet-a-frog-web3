@@ -145,28 +145,30 @@ export const App = () => {
     }, [])
 
     return (
-        <Container style={{
-            width: "100vw",
-            height: "100vh",
-            boxSizing: "border-box",
-            display: "flex",
-            justifyContent: 'center',
-            padding: '30px',
-        }}>
+        <>
             <BackgroundStars />
-            <Container>
-                <Header
-                    currentAccount={currentAccount}
-                    petAFrog={petAFrog}
-                    connectWallet={connectWallet}
-                    totalPets={totalPets}
-                    petting={petting}
-                />
-                <Gentlemen
-                    list={gentlemen} 
-                />
-            </Container>
+            <Container style={{
+                width: "100vw",
+                height: "100vh",
+                boxSizing: "border-box",
+                display: "flex",
+                justifyContent: 'center',
+                padding: '30px',
+            }}>
+                <Container>
+                    <Header
+                        currentAccount={currentAccount}
+                        petAFrog={petAFrog}
+                        connectWallet={connectWallet}
+                        totalPets={totalPets}
+                        petting={petting}
+                    />
+                    <Gentlemen
+                        list={gentlemen} 
+                    />
+                </Container>
 
-        </Container>
+            </Container>
+        </>
     )
 }
