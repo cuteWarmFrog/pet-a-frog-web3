@@ -2,4 +2,3 @@ node_modules
 artifacts
 cache
 hardhat.config.js
-yarn.lock
