@@ -53,9 +53,9 @@ export const Header = (props) => {
             <p style={pStyle}>
                 Hi there! It's me, cute frog ⊂(◉‿◉)つ
             </p>
-            <p style={pStyle}>
+            {currentAccount && <p style={pStyle}>
                 You've petted me {totalPets} times already (✿◠‿◠)
-            </p>
+            </p>}
             {renderButtons()}
         </Container>
     )

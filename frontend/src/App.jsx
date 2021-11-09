@@ -7,6 +7,7 @@ import { Header } from "./Header";
 import abi from './unils/WavePortal.json';
 import { BackgroundStars } from "./BackgroundStars/BackgroundStars";
 import { Gentlemen } from "./Gentlemen";
+import { LeaderBord } from "./LeaderBoard";
 
 export const App = () => {
 
@@ -141,8 +142,8 @@ export const App = () => {
         setInterval(() => {
             getTotalPets();
             getGentleman();
-        }, 5000);
-    })
+        }, 10000);
+    }, [])
 
     return (
         <>
@@ -155,6 +156,9 @@ export const App = () => {
                 justifyContent: 'center',
                 padding: '30px',
             }}>
+                {currentAccount && (
+                    <LeaderBord list={gentlemen} />
+                )}
                 <Container>
                     <Header
                         currentAccount={currentAccount}
@@ -163,9 +167,9 @@ export const App = () => {
                         totalPets={totalPets}
                         petting={petting}
                     />
-                    <Gentlemen
-                        list={gentlemen} 
-                    />
+                    {currentAccount && (
+                        <Gentlemen list={gentlemen} />
+                    )}
                 </Container>
 
             </Container>
