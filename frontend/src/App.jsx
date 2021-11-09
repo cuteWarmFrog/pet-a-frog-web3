@@ -142,7 +142,7 @@ export const App = () => {
         setInterval(() => {
             getTotalPets();
             getGentleman();
-        }, 10000);
+        }, 3000);
     }, [])
 
     return (
