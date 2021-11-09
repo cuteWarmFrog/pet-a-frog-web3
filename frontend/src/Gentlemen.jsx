@@ -1,6 +1,8 @@
 import React from "react";
 import { Container } from '@mui/material';
 
+import './Gentleman.scss';
+
 const pStyle = {
     color: 'white',
     fontSize: 'large'
@@ -14,7 +16,8 @@ export const Gentlemen = (props) => {
     console.log(`list of gentleman: ${list}`)
 
     return (
-        <Container style={{
+        <Container 
+        style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -23,7 +26,11 @@ export const Gentlemen = (props) => {
             <p style={pStyle}>last 5 gentlemen:</p>
             {lastFive.length > 1 && lastFive.map((el, i) => {
                 return (
-                    <p style={pStyle} key={i}>{el}</p>
+                    <Container className='gentleman' key={i}>
+                        <p>gentleman: {el.address}</p>
+                        <p>message: {el.message}</p>
+                        <p>time: {el.time}</p>
+                    </Container>
                 )
             })}
         </Container>

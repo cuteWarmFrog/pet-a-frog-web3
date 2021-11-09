@@ -13,19 +13,19 @@ export const LeaderBord = (props) => {
         
         let sortedItems = [];
         if (list.length > 1) {
-            console.log(list);
             const map = new Map();
             list.forEach(el => {
-                map.set(el, Math.max(map.get(el) + 1 | 0, 1));
+                map.set(el.address, Math.max(map.get(el.address) + 1 | 0, 1));
             });
-            console.log(map);
             sortedItems = [...map.entries()].sort((a, b) => b[1] - a[1])
         }
         return sortedItems;
     }, [list]);
 
     return (
-        <Container>
+        <Container className='gradient-border'
+            style={{ marginRight: '15px'}}
+        >
             <p style={pStyle}>Leader Board</p>
             {sorted.map((el, i) => {
                 return (

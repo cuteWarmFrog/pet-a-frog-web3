@@ -14,9 +14,9 @@ export const App = () => {
     const [currentAccount, setCurrentAccount] = useState("");
     const [totalPets, setTotalPets] = useState(0);
     const [petting, setPetting] = useState(false);
-    const [gentlemen, setGentlemen] = useState([]);
+    const [pets, setPets] = useState([]);
 
-    const contractAddress = "0x6ebbA0D4600Df68e5C4C99f289e291cf5de96A48";
+    const contractAddress = "0xA27758f624969A082C849016AD8EA1646d66CD92";
     const contractABI = abi.abi;
 
     const checkIfWalletIsConnected = async () => {
@@ -82,7 +82,7 @@ export const App = () => {
         }
     }
 
-    const petAFrog = async () => {
+    const petAFrog = async (message) => {
         try {
             const { ethereum } = window;
 
@@ -95,7 +95,7 @@ export const App = () => {
                 console.log("Retrieved total wave count...", count.toNumber());
 
 
-                const waveTxn = await wavePortalContract.petAFrog();
+                const waveTxn = await wavePortalContract.petAFrog(message);
                 setPetting(true);
                 console.log("Mining...", waveTxn.hash);
 
@@ -113,7 +113,7 @@ export const App = () => {
         }
     }
 
-    const getGentleman = async () => {
+    const getPets = async () => {
         try {
             const { ethereum } = window;
 
@@ -122,9 +122,16 @@ export const App = () => {
                 const signer = provider.getSigner();
                 const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-                let blockChainGentlemen = await wavePortalContract.getGentelmen();
-                // console.log("Retrieved gentlemen...", gentelman);
-                setGentlemen(blockChainGentlemen)
+                let blockchainPets = await wavePortalContract.getAllPets();
+                // console.log(blockchainPets);
+                let finePets = blockchainPets.map(el => {
+                    return {
+                        address: el.petter,
+                        message: el.message,
+                        time: new Date(el.timestamp._hex * 1000).toString().split(' ').slice(0, 5).join(' '),
+                    }
+                })
+                setPets(finePets);
 
             } else {
                 console.log("Ethereum object doesn't exist!");
@@ -137,42 +144,45 @@ export const App = () => {
     useEffect(() => {
         getTotalPets()
         checkIfWalletIsConnected();
-        getGentleman();
+        getPets();
 
         setInterval(() => {
             getTotalPets();
-            getGentleman();
+            getPets();
         }, 3000);
     }, [])
 
     return (
-        <>
+        <Container style={{
+            display: 'flex',
+            flexDirection: 'column',
+            maxWidth: '100vw'
+        }}>
             <BackgroundStars />
             <Container style={{
-                width: "100vw",
-                height: "100vh",
-                boxSizing: "border-box",
-                display: "flex",
+                maxWidth: '100vw',
+                width: '100vw',
+                height: '100vh',
+                boxSizing: 'border-box',
+                display: 'flex',
                 justifyContent: 'center',
                 padding: '30px',
             }}>
                 {currentAccount && (
-                    <LeaderBord list={gentlemen} />
+                    <LeaderBord list={pets} />
                 )}
-                <Container>
-                    <Header
-                        currentAccount={currentAccount}
-                        petAFrog={petAFrog}
-                        connectWallet={connectWallet}
-                        totalPets={totalPets}
-                        petting={petting}
-                    />
-                    {currentAccount && (
-                        <Gentlemen list={gentlemen} />
-                    )}
-                </Container>
+                <Header
+                    currentAccount={currentAccount}
+                    petAFrog={petAFrog}
+                    connectWallet={connectWallet}
+                    totalPets={totalPets}
+                    petting={petting}
+                />
+                {currentAccount && (
+                    <Gentlemen list={pets} />
+                )}
 
             </Container>
-        </>
+        </Container>
     )
 }

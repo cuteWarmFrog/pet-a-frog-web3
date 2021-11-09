@@ -9,16 +9,23 @@ const main = async () => {
 
   let petCount;
   petCount = await waveContract.getTotalPets();
-  
-  let waveTxn = await waveContract.petAFrog();
-  await waveTxn.wait();
+  console.log(`totalPets: ${petCount}`)
 
+  let waveTxn = await waveContract.petAFrog("I am petting");
+  await waveTxn.wait();
   petCount = await waveContract.getTotalPets();
 
-  waveTxn = await waveContract.connect(randomPerson).petAFrog();
-  await waveTxn.wait();
+  console.log(`totalPets: ${petCount}`);
 
+  waveTxn = await waveContract.connect(randomPerson).petAFrog("another pet");
+  await waveTxn.wait();
   petCount = await waveContract.getTotalPets();
+
+  console.log(`totalPets: ${petCount}`);
+
+  let allPets = await waveContract.getAllPets();
+  console.log(allPets);
+
 };
 
 const runMain = async () => {

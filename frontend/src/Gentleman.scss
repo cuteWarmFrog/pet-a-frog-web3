@@ -1,0 +1,19 @@
+
+.gentleman:hover {
+    background: linear-gradient(
+            60deg,
+            hsl(224, 85%, 66%),
+            hsl(269, 85%, 66%),
+            hsl(314, 85%, 66%),
+            hsl(359, 85%, 66%),
+            hsl(44, 85%, 66%),
+            hsl(89, 85%, 66%),
+            hsl(134, 85%, 66%),
+            hsl(179, 85%, 66%)
+        );
+    border-radius: 10px;
+
+    p {
+        color: black
+    }
+}
