@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from 'ethers';
 import { Container } from '@mui/material';
-
+import GitHubIcon from '@mui/icons-material/GitHub';
+import { Link } from "@mui/material";
+import { Button } from "@mui/material";
 import { Header } from "./Header";
-
-import abi from './unils/WavePortal.json';
 import { BackgroundStars } from "./BackgroundStars/BackgroundStars";
 import { Gentlemen } from "./Gentlemen";
 import { LeaderBord } from "./LeaderBoard";
+import abi from './unils/WavePortal.json';
 
 export const App = () => {
 
@@ -16,7 +17,7 @@ export const App = () => {
     const [petting, setPetting] = useState(false);
     const [pets, setPets] = useState([]);
 
-    const contractAddress = "0xA27758f624969A082C849016AD8EA1646d66CD92";
+    const contractAddress = "0xE102d0A836aF631139108A2727a47fD72852A23F";
     const contractABI = abi.abi;
 
     const checkIfWalletIsConnected = async () => {
@@ -183,6 +184,19 @@ export const App = () => {
                 )}
 
             </Container>
+            <div style={{
+                 marginTop: '40px',
+                 position: 'fixed',
+                 left: 0,
+                 bottom: '10px',
+                 display: 'flex',
+                 justifyContent: 'center',
+                 width: '100vw'
+            }}>
+                <Link href='https://github.com/cuteWarmFrog'>
+                    <GitHubIcon fontSize='large' color='primary'/>
+                </Link>
+            </div>
         </Container>
     )
 }

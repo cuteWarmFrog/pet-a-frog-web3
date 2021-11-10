@@ -96,6 +96,11 @@ export const Header = (props) => {
             <p style={pStyle}>
                 Hi there! It's me, cute frog ⊂(◉‿◉)つ
             </p>
+
+            <p style={{ color: 'white', fontSize: 'small' }}>
+                Petting me also gets you 0.001 eth!
+                </p>
+
             {currentAccount && <p style={pStyle}>
                 You've petted me {totalPets} times already (✿◠‿◠)
             </p>}
