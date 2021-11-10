@@ -3,7 +3,6 @@ import { ethers } from 'ethers';
 import { Container } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Link } from "@mui/material";
-import { Button } from "@mui/material";
 import { Header } from "./Header";
 import { BackgroundStars } from "./BackgroundStars/BackgroundStars";
 import { Gentlemen } from "./Gentlemen";
