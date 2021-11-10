@@ -35,7 +35,7 @@ export const Header = (props) => {
         }
     }, [message, petAFrog])
 
-    const renderButtons = useCallback(() => {
+    const renderInputs = useCallback(() => {
         if (currentAccount) {
             if (petting) {
                 return (
@@ -52,7 +52,7 @@ export const Header = (props) => {
                     }}>
                         <TextField
                             style={{ backgroundColor: '#74ad66', marginRight: '10px', borderRadius: '7px' }}
-                            color='error'
+                            color='primary'
                             label='Message'
                             variant='filled'
                             onChange={onInputChange}
@@ -98,16 +98,16 @@ export const Header = (props) => {
             </p>
 
             <p style={{ color: 'white', fontSize: 'small' }}>
-                Petting me also gets you 0.001 eth!
+                Petting me also might get you 0.001 eth!
                 </p>
 
             {currentAccount && <p style={pStyle}>
-                You've petted me {totalPets} times already (✿◠‿◠)
+                I'd been petted {totalPets} times already (✿◠‿◠)
             </p>}
             {alert && <Alert style={{ margin: '15px', fontSize: 'large', fontWeight: 600 }} variant="outlined" severity="info">
                 Message is too short!
             </Alert>}
-            {renderButtons()}
+            {renderInputs()}
         </Container>
     )
 }

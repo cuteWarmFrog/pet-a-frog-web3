@@ -12,7 +12,6 @@ import abi from './unils/WavePortal.json';
 export const App = () => {
 
     const [currentAccount, setCurrentAccount] = useState("");
-    const [totalPets, setTotalPets] = useState(0);
     const [petting, setPetting] = useState(false);
     const [pets, setPets] = useState([]);
 
@@ -62,26 +61,6 @@ export const App = () => {
         }
     }
 
-    const getTotalPets = async () => {
-        try {
-            const { ethereum } = window;
-
-            if (ethereum) {
-                const provider = new ethers.providers.Web3Provider(ethereum);
-                const signer = provider.getSigner();
-                const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
-
-                let count = await wavePortalContract.getTotalPets();
-                count = parseInt(count._hex, 16);
-                setTotalPets(count)
-            } else {
-                console.log("Ethereum object doesn't exist!");
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     const petAFrog = async (message) => {
         try {
             const { ethereum } = window;
@@ -95,7 +74,7 @@ export const App = () => {
                 console.log("Retrieved total wave count...", count.toNumber());
 
 
-                const waveTxn = await wavePortalContract.petAFrog(message);
+                const waveTxn = await wavePortalContract.petAFrog(message, { gasLimit: 300000 });
                 setPetting(true);
                 console.log("Mining...", waveTxn.hash);
 
@@ -132,6 +111,7 @@ export const App = () => {
                     }
                 })
                 setPets(finePets);
+                console.log(`pets ${finePets}`);
 
             } else {
                 console.log("Ethereum object doesn't exist!");
@@ -142,14 +122,36 @@ export const App = () => {
     }
 
     useEffect(() => {
-        getTotalPets()
         checkIfWalletIsConnected();
         getPets();
 
-        setInterval(() => {
-            getTotalPets();
-            getPets();
-        }, 3000);
+        const onNewPet = (from, time, message) => {
+            console.log(from, time, message);
+
+            setPets(prevState => [
+                ...prevState,
+                {
+                    address: from,
+                    time: new Date(time._hex * 1000).toString().split(' ').slice(0, 5).join(' '),
+                    message
+                }
+            ])
+        }
+
+        let wavePortalContract;
+        if (window.ethereum) {
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const signer = provider.getSigner();
+        
+            wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
+            wavePortalContract.on('NewPet', onNewPet);
+          }
+        
+          return () => {
+            if (wavePortalContract) {
+              wavePortalContract.off('NewPet', onNewPet);
+            }
+          };
     }, [])
 
     return (
@@ -175,7 +177,7 @@ export const App = () => {
                     currentAccount={currentAccount}
                     petAFrog={petAFrog}
                     connectWallet={connectWallet}
-                    totalPets={totalPets}
+                    totalPets={pets.length}
                     petting={petting}
                 />
                 {currentAccount && (

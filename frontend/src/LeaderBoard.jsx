@@ -12,10 +12,10 @@ export const LeaderBord = (props) => {
     const sorted = useMemo(() => {
         
         let sortedItems = [];
-        if (list.length > 1) {
+        if (list.length > 0) {
             const map = new Map();
             list.forEach(el => {
-                map.set(el.address, Math.max(map.get(el.address) + 1 | 0, 1));
+                map.set(el.address, Math.max(map.get(el.address) + 1 || 0, 1));
             });
             sortedItems = [...map.entries()].sort((a, b) => b[1] - a[1])
         }
